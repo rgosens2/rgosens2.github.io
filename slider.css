@@ -26,7 +26,7 @@
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #40000FF; /* Green background */
+    background: #0000FF; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
 
