@@ -1,0 +1,215 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Slider - Colorpicker</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <style>
+  #red, #green, #blue, #brightness {
+    float: left;
+    clear: left;
+    width: 300px;
+    margin: 15px;
+  }
+  
+  #custom-handle-red, #custom-handle-green, #custom-handle-blue, #custom-handle-brightness {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+  
+  
+  #swatch {
+    width: 120px;
+    height: 100px;
+    margin-top: 18px;
+    margin-left: 380px;
+    background-image: none;
+  }
+  #red .ui-slider-range { background: #ef2929; }
+  #red .ui-slider-handle { border-color: #ef2929; }
+  #green .ui-slider-range { background: #8ae234; }
+  #green .ui-slider-handle { border-color: #8ae234; }
+  #blue .ui-slider-range { background: #729fcf; }
+  #blue .ui-slider-handle { border-color: #729fcf; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    function hexFromRGB(r, g, b) {
+      var hex = [
+        r.toString( 16 ),
+        g.toString( 16 ),
+        b.toString( 16 )
+      ];
+      $.each( hex, function( nr, val ) {
+        if ( val.length === 1 ) {
+          hex[ nr ] = "0" + val;
+        }
+      });
+      return hex.join( "" ).toUpperCase();
+    }
+    function refreshSwatch() {
+      var red = $( "#red" ).slider( "value" ),
+        green = $( "#green" ).slider( "value" ),
+        blue = $( "#blue" ).slider( "value" ),
+        hex = hexFromRGB( red, green, blue );
+      $( "#swatch" ).css( "background-color", "#" + hex );
+    }
+   
+       
+    $( "#red" ).slider({    	
+    	orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshSwatch,
+      change: refreshSwatch,      
+      create: function() {
+        $( "#custom-handle-red" ).text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        $( "#custom-handle-red" ).text( ui.value );
+        //sendValues();
+      },
+      change: function( event, ui ) {
+        refreshSwatch();
+        sendValues();
+      }
+    });
+    
+    $( "#green" ).slider({    	
+    	orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshSwatch,
+      change: refreshSwatch,      
+      create: function() {
+        $( "#custom-handle-green" ).text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        $( "#custom-handle-green" ).text( ui.value );
+        //sendValues();
+      },
+      change: function( event, ui ) {
+        refreshSwatch();
+        sendValues();
+      }
+    });
+    
+    $( "#blue" ).slider({    	
+    	orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshSwatch,
+      change: refreshSwatch,      
+      create: function() {
+        $( "#custom-handle-blue" ).text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        $( "#custom-handle-blue" ).text( ui.value );
+        //sendValues();
+      },
+      change: function( event, ui ) {
+        refreshSwatch();
+        sendValues();
+      }
+    });
+    
+    
+    $( "#brightness" ).slider({    	
+    	orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshSwatch,
+      change: refreshSwatch,      
+      create: function() {
+        $( "#custom-handle-brightness" ).text( $( this ).slider( "value" ) );
+        refreshSwatch(); // only here is enough for refresh on page load
+        sendValues();
+      },
+      slide: function( event, ui ) {
+        $( "#custom-handle-brightness" ).text( ui.value );
+        //sendValues();
+      },
+      change: function( event, ui ) {
+        refreshSwatch();
+        sendValues();
+      }
+    });
+    
+    
+      
+    //$( "#red" ).slider( "value", 127 ); //refresh swatch at load
+    //$( "#green" ).slider( "value", 140 );
+    //$( "#blue" ).slider( "value", 60 );
+    
+    
+  } );
+  </script>
+  
+  <script>
+  function sendValues() {
+	  var redValue = $("#red").slider("value");
+	  var greenValue = $("#green").slider("value");
+	  var blueValue = $("#blue").slider("value");
+	  var brightnessValue = $("#brightness").slider("value");
+    
+  
+	  var url = "http://192.168.1.81/rgb?r="+pad(redValue,3)+"&g="+pad(greenValue,3)+"&b="+pad(blueValue,3)+"&h="+pad(brightnessValue,3);
+	  $.ajax({
+	    url: url,
+	    context: document.body
+	  });
+	}
+	
+	function pad(n, width, z) {
+	  z = z || '0'; // pad character, default is '0'
+	  n = n + '';   // turn into string
+	  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n; // NOTE: optellen gaat niet voor aftrekken, gewoon volgorde, hij had beter haakjes kunnen gebruiken om de aftrekking
+	}
+	</script>
+	
+</head>
+<body class="ui-widget-content" style="border:0;">
+
+<h2>RGB LED Shield on Wemos D1 Mini</h2>
+
+<img src='wemos_with_rgb_led_shield.jpeg' width='150' height='*'/>  
+
+ 
+<!--
+<p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+  <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+  Simple Colorpicker
+</p>
+-->
+
+ 
+<form> 
+<div id="red"><div id="custom-handle-red" class="ui-slider-handle"></div></div>
+<div id="green"><div id="custom-handle-green" class="ui-slider-handle"></div></div>
+<div id="blue"><div id="custom-handle-blue" class="ui-slider-handle"></div></div>
+<div id="brightness"><div id="custom-handle-brightness" class="ui-slider-handle"></div></div>
+ 
+<div id="swatch" class="ui-widget-content ui-corner-all"></div>
+ 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<input type='button' value='Send' onClick='sendValues();'/>
+</form>
+
+</body>
+</html>

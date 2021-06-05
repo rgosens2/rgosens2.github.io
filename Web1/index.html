@@ -1,0 +1,33 @@
+<html>
+  <head>
+  <script type='text/javascript' src='jquerymin.js'></script>
+  <script type='text/javascript' src='functions.js'></script>
+  <link rel='stylesheet' href='slider.css'/>  
+  <link rel='stylesheet' href='styles.css'/>  
+  </head>
+  <body> 
+  <div class='wrapper'>
+  <h2>RGB LED Shield am Wemos D1 Mini</h2>
+  <form>
+  <div class='container'>
+  <img src='https://draeger-it.blog/wp-content/uploads/2018/01/wemos_mit_rgbled-1.jpg ' width='150' height='*'/>  
+  </div>
+  <div class='container'> 
+  <label for='redSlider'>Rot</label>
+  <div class='slidecontainer'><input type='range' min='0' max='255' value='redValue' class='slider' id='redSlider'/></div>
+  <label for='greenSlider'>Gr&uuml;n</label>
+  <div class='slidecontainer'><input type='range' min='0' max='255' value='greenValue' class='slider' id='greenSlider'/></div>
+  <label for='blueSlider'>Blau</label>
+  <div class='slidecontainer'><input type='range' min='0' max='255' value='blueValue' class='slider' id='blueSlider'/></div>
+  <label for='brightnessSlider'>Helligkeit</label>
+  <div class='slidecontainer'><input type='range' min='0' max='255' value='brightnessValue' class='slider' id='brightnessSlider'/></div>
+  </div>
+  <div class='previewContainer'>
+  <div class='preview'></div>
+  </div>  
+  <div style='clear:both'>
+  <input type='button' value='Absenden' onClick='sendValues();'/>
+  </form>
+  </div>  
+  </body>
+</html>
