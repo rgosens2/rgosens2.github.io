@@ -1,34 +1,26 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Page Title</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
-
 <body>
-	...content goes here...
-	
-<form>
-    <label for="slider-1">Slider:</label>
-    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
-</form>
-<form>
-    <label for="slider-1">Slider:</label>
-    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
-</form>
-<form>
-    <label for="slider-1">Slider:</label>
-    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
-</form>
 
-<form>
-    <label for="slider-1">Slider:</label>
-    <input type="range" name="slider-1" id="slider-1" min="0" max="100" value="50">
-</form>
+<div data-role="page">
+  <div data-role="header">
+    <h1>滑块控件</h1>
+  </div>
 
+  <div data-role="main" class="ui-content">
+    <form method="post" action="demoform.asp">
+      <label for="points">进度:</label>
+      <input type="range" name="points" id="points" value="50" min="0" max="100">
+      <input type="submit" data-inline="true" value="提交">
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

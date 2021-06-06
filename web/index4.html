@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style>
+	/*#slider-1 {width:80%;margin:15px}*/
+		
+	</style>
+	
+	<script>
+		$(document).on("pagecreate", "#page1", function() {
+			
+			//alert("QQQ");
+			HighlightColorRed($("#slider-1")); // call once on page create
+			$("#slider-1").on("change", function() {
+			  HighlightColorRed($(this));
+			});
+			function HighlightColorRed(slider) {
+			  var theVal = slider.val();
+			  var color = "#" + Number(theVal).toString(16) + "0000";				    
+			  slider.closest(".ui-slider").find(".ui-slider-bg").css("background-color", color);        
+			}
+			
+			HighlightColorGreen($("#slider-2")); // call once on page create
+			$("#slider-2").on("change", function() {
+			  HighlightColorGreen($(this));
+			});
+			function HighlightColorGreen(slider) {
+			  var theVal = slider.val();
+			  var color = "#00" + Number(theVal).toString(16) + "00";				    
+			  slider.closest(".ui-slider").find(".ui-slider-bg").css("background-color", color);        
+			}
+			
+			HighlightColorBlue($("#slider-3")); // call once on page create
+			$("#slider-3").on("change", function() {
+			  HighlightColorBlue($(this));
+			});
+			function HighlightColorBlue(slider) {
+			  var theVal = slider.val();
+			  var color = "#0000" + Number(theVal).toString(16) + "";				    
+			  slider.closest(".ui-slider").find(".ui-slider-bg").css("background-color", color);        
+			}
+			
+			HighlightColorBright($("#slider-4")); // call once on page create
+			$("#slider-4").on("change", function() {
+			  HighlightColorBright($(this));
+			});
+			function HighlightColorBright(slider) {
+			  var theVal = slider.val();
+			  var color = "#" + Number(theVal).toString(16) + Number(theVal).toString(16) + Number(theVal).toString(16) + "";				    
+			  slider.closest(".ui-slider").find(".ui-slider-bg").css("background-color", color);        
+			}
+		});
+	</script>
+</head>
+
+<body>
+<div data-role="page" id="page1">
+<div data-role="header">Header</div>
+
+<div role="main" class="ui-content">
+
+<label for="slider-1">Red:</label>
+<input type="range" data-highlight="true" name="slider-1" id="slider-1" min="0" max="255" value="127">
+
+<label for="slider-2">Green:</label>
+<input type="range" data-highlight="true" name="slider-2" id="slider-2" min="0" max="255" value="127">	
+
+<label for="slider-3">Blue:</label>
+<input type="range" data-highlight="true" name="slider-3" id="slider-3" min="0" max="255" value="127">	
+
+<label for="slider-4">Brightness:</label>
+<input type="range" data-highlight="true" name="slider-4" id="slider-4" min="0" max="255" value="127">	
+
+
+</div>
+
+<div data-role="footer">Footer</div>
+</div>
+
+</body>
+</html>
