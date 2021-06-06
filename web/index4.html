@@ -16,10 +16,13 @@
 	<script>
 		$(document).on("pagecreate", "#page1", function() {
 			
+			refreshSwatch();  // call once on page create
+			
 			//alert("QQQ");
 			HighlightColorRed($("#slider-1")); // call once on page create
 			$("#slider-1").on("change", function() {
 			  HighlightColorRed($(this));
+			  refreshSwatch();
 			});
 			function HighlightColorRed(slider) {
 			  var theVal = slider.val();
@@ -30,6 +33,7 @@
 			HighlightColorGreen($("#slider-2")); // call once on page create
 			$("#slider-2").on("change", function() {
 			  HighlightColorGreen($(this));
+			  refreshSwatch();
 			});
 			function HighlightColorGreen(slider) {
 			  var theVal = slider.val();
@@ -40,6 +44,7 @@
 			HighlightColorBlue($("#slider-3")); // call once on page create
 			$("#slider-3").on("change", function() {
 			  HighlightColorBlue($(this));
+			  refreshSwatch();
 			});
 			function HighlightColorBlue(slider) {
 			  var theVal = slider.val();
@@ -57,6 +62,30 @@
 			  slider.closest(".ui-slider").find(".ui-slider-bg").css("background-color", color);        
 			}
 		});
+		
+		function hexFromRGB(r, g, b) {
+      var hex = [
+        Number(r).toString( 16 ),
+        Number(g).toString( 16 ),
+        Number(b).toString( 16 )
+      ];
+      $.each( hex, function( nr, val ) {
+        if ( val.length === 1 ) {
+          hex[ nr ] = "0" + val;
+        }
+      });
+      return hex.join( "" ).toUpperCase();
+    }
+    function refreshSwatch() {
+    	//alert("QQQ");
+      var red = $( "#slider-1" ).val(),
+        green = $( "#slider-2" ).val(),
+         blue = $( "#slider-3" ).val(),
+        hex = hexFromRGB( red, green, blue );
+      //$( "#swatch" ).css( "background-color", "#" + hex );
+      //alert(red);
+      document.getElementById("swatch").value = "#" + hex;
+    }
 	</script>
 </head>
 
@@ -67,6 +96,11 @@
 <div role="main" class="ui-content">
 	
 <h3>RGB LED Shield on Wemos D1 Mini</h3>
+
+<img src='wemos_with_rgb_led_shield.jpeg' width='150' height='*'/> 
+
+<input type="color" id="swatch" style="height:100px;">
+
 
 <label for="slider-1">Red:</label>
 <input type="range" data-highlight="true" name="slider-1" id="slider-1" min="0" max="255" value="127">
@@ -79,6 +113,8 @@
 
 <label for="slider-4">Brightness:</label>
 <input type="range" data-highlight="true" name="slider-4" id="slider-4" min="0" max="255" value="127">	
+
+
 
 
 </div>
